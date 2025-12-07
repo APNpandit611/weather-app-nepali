@@ -14,14 +14,14 @@ interface WeatherStackResponse {
         humidity?: number;
         visibility?: number;
         weather_descriptions: string[];
-        weather_icons: string[]
+        weather_icons: string[];
         astro: {
             sunrise: string;
             sunset: string;
         };
-        air_quality:{
-          "us-epa-index": string,
-        }
+        air_quality: {
+            "us-epa-index": string;
+        };
     };
 }
 
@@ -79,8 +79,7 @@ export default function WeatherApp() {
     const sunrise = weather?.current.astro.sunrise ?? "00:00";
     const sunset = weather?.current.astro.sunset ?? "00.00";
     const weather_icons = weather?.current?.weather_icons ?? [];
-    const airQuality = weather?.current?.air_quality?.["us-epa-index"] ?? "0"
-
+    const airQuality = weather?.current?.air_quality?.["us-epa-index"] ?? "0";
 
     const tempRange:
         | "extremely_cold"
@@ -90,17 +89,17 @@ export default function WeatherApp() {
         | "hot"
         | "very_hot"
         | "extremely_hot" =
-        temp <= -20
+        feelsLike <= -20
             ? "extremely_cold"
-            : temp <= -10
+            : feelsLike <= -10
             ? "very_cold"
-            : temp <= -5
+            : feelsLike <= -5
             ? "cold"
-            : temp <= 25
+            : feelsLike <= 25
             ? "mild"
-            : temp <= 35
+            : feelsLike <= 30
             ? "hot"
-            : temp <= 45
+            : feelsLike <= 40
             ? "very_hot"
             : "extremely_hot";
 

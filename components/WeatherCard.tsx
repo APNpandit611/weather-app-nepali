@@ -192,7 +192,7 @@ export function WeatherCard({
                 </div>
                 <div className="text-right">
                     <div className={`${getTempTextColor()} mb-1`}>
-                        {temperature}°C
+                        तापमान {temperature}°C
                     </div>
                     <div className="text-gray-600">महसुस {feelsLike}°C</div>
                 </div>
