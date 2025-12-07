@@ -11,8 +11,8 @@ export async function GET(req: Request) {
 
   const WEATHERSTACK_KEY = process.env.NEXT_PUBLIC_WEATHERSTACK_KEY; // server-only
   const weatherRes = await fetch(
-    // `http://api.weatherstack.com/current?access_key=${WEATHERSTACK_KEY}&query=${lat},${lon}&units=m`
-    `http://api.weatherstack.com/current?access_key=${WEATHERSTACK_KEY}&query=kokkola&units=m`
+    `http://api.weatherstack.com/current?access_key=${WEATHERSTACK_KEY}&query=${lat},${lon}&units=m`
+    // `http://api.weatherstack.com/current?access_key=${WEATHERSTACK_KEY}&query=kokkola&units=m`
   );
 
   console.log(lat, lon)
