@@ -18,6 +18,7 @@ export type WeatherCondition =
     | "कुहिरो"
     | "बादल"
     | "वर्षा"
+    | "हल्का बादल"
     | "हल्का वर्षा"
     | "भारी वर्षा"
     | "हिउँ"
@@ -51,6 +52,7 @@ interface WeatherCardProps {
 const conditionMap: Record<string, WeatherCondition> = {
     sunny: "घाम",
     clear: "कुहिरो",
+    overcast: "हल्का बादल",
     cloudy: "बादल",
     rain: "वर्षा",
     "light rain": "हल्का वर्षा",
@@ -78,7 +80,7 @@ export function WeatherCard({
 }: WeatherCardProps) {
     // Convert API string to Nepali condition
     const condition: WeatherCondition = apiCondition
-        ? conditionMap[apiCondition.toLowerCase()] ?? "घाम"
+        ? conditionMap[apiCondition.split(",")?.[0].toLowerCase()] ?? "घाम"
         : "घाम";
 
     // Weather icon mapping
@@ -90,6 +92,8 @@ export function WeatherCard({
             case "कुहिरो":
                 return <Sun className={iconClass} />;
             case "बादल":
+                return <Cloud className={iconClass} />;
+            case "हल्का बादल":
                 return <Cloud className={iconClass} />;
             case "वर्षा":
                 return <CloudRain className={iconClass} />;
@@ -181,7 +185,6 @@ export function WeatherCard({
                         className={`bg-gradient-to-br ${getTempColor()} p-6 rounded-2xl shadow-lg text-white`}
                     >
                         {getWeatherIcon()}
-                       
                     </div>
                     <div>
                         <h2 className="text-gray-800 mb-1">{condition}</h2>
@@ -215,4 +218,3 @@ export function WeatherCard({
         </div>
     );
 }
-
