@@ -68,16 +68,16 @@ export default function WeatherApp() {
     if (error)
         return <div className="text-center mt-20 text-white">{error}</div>;
 
-    const city = weather?.location.name ?? "काठमाडौं";
-    const country = weather?.location.country ?? "नेपाल";
-    const condition = weather?.current.weather_descriptions[0];
-    const temp = weather?.current.temperature ?? 20;
+    const city = weather?.location?.name ?? "काठमाडौं";
+    const country = weather?.location?.country ?? "नेपाल";
+    const condition = weather?.current?.weather_descriptions[0];
+    const temp = weather?.current?.temperature ?? 20;
     const feelsLike = weather?.current?.feelslike ?? temp;
-    const wind = weather?.current.wind_speed ?? 10;
-    const humidity = weather?.current.humidity ?? 50;
-    const visibility = weather?.current.visibility ?? 8;
-    const sunrise = weather?.current.astro.sunrise ?? "00:00";
-    const sunset = weather?.current.astro.sunset ?? "00.00";
+    const wind = weather?.current?.wind_speed ?? 10;
+    const humidity = weather?.current?.humidity ?? 50;
+    const visibility = weather?.current?.visibility ?? 8;
+    const sunrise = weather?.current?.astro?.sunrise ?? "00:00";
+    const sunset = weather?.current?.astro?.sunset ?? "00.00";
     const weather_icons = weather?.current?.weather_icons ?? [];
     const airQuality = weather?.current?.air_quality?.["us-epa-index"] ?? "0";
 

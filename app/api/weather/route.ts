@@ -14,9 +14,7 @@ export async function GET(req: Request) {
     `http://api.weatherstack.com/current?access_key=${WEATHERSTACK_KEY}&query=${lat},${lon}&units=m`
     // `http://api.weatherstack.com/current?access_key=${WEATHERSTACK_KEY}&query=kokkola&units=m`
   );
-
-  console.log(lat, lon)
-
+  
   const data = await weatherRes.json();
   return NextResponse.json(data);
 
