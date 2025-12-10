@@ -5,13 +5,15 @@ import { WeatherCard } from "./WeatherCard";
 import { WeatherStats } from "./WeatherStats";
 import { ClothingSuggestions } from "./ClothingSuggestions";
 import { WeeklyForecast } from "./WeeklyForecast";
+import Spinner from "./Loader";
+import { Loader2 } from "lucide-react";
+import Loader from "./Loader";
 
 type DailyForecastItem = {
     date: string; // ISO date string
     minTemp: number;
     maxTemp: number;
     weatherCode: number;
-
 };
 
 type WeatherStackResponse = {
@@ -84,10 +86,16 @@ export default function WeatherApp() {
 
     if (loading)
         return (
-            <div className="text-center mt-20 text-white">
-                मौसम लोड हुँदैछ...
+            <div className="flex items-center justify-center h-screen">
+                <Loader
+                    size={56}
+                    color="#6366f1"
+                    text="मौसम आउँदैछ !!"
+                    className="text-slate-600"
+                />
             </div>
         );
+
     if (error)
         return <div className="text-center mt-20 text-white">{error}</div>;
 
@@ -142,7 +150,7 @@ export default function WeatherApp() {
                     humidity={weather?.humidity ?? 0}
                     visibility={weather?.visibility ?? 0}
                 />
-                <WeeklyForecast dailyForecast={weather?.dailyForecast ?? []}/>
+                <WeeklyForecast dailyForecast={weather?.dailyForecast ?? []} />
                 <WeatherStats
                     uvIndex={weather?.uvIndex ?? 0}
                     sunrise={weather?.sunrise ?? "00:00"}
