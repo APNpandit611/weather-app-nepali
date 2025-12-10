@@ -10,6 +10,11 @@ import {
     CloudLightning,
     CloudHail,
     CloudFog,
+    Snowflake,
+    CloudRainWind,
+    CloudDrizzle,
+    CloudSun,
+    SunSnow,
 } from "lucide-react";
 import Image from "next/image";
 import { WeatherCondition, weatherCodeMap } from "@/utils/weatherConditions";
@@ -165,33 +170,80 @@ export function WeatherCard({
 
     const getWeatherIcon = (condition: WeatherCondition) => {
         const iconClass = "w-16 h-16";
+
         switch (condition) {
             case "स्पष्ट आकाश":
-            case "मुख्यतया स्पष्ट":
                 return <Sun className={iconClass} />;
+
+            case "मुख्यतया स्पष्ट":
+                return <SunSnow className={iconClass} />;
+
             case "आंशिक बादल":
+                return <CloudSun className={iconClass} />;
+
             case "धेरै बादल":
                 return <Cloud className={iconClass} />;
-            case "हल्का पानी":
-            case "मध्यम पानी":
-            case "धेरै पानी":
-            case "थोरै पानी":
-                return <CloudRain className={iconClass} />;
-            case "हल्का जमेको पानी":
-            case "धेरै जमेको पानी":
-                return <CloudHail className={iconClass} />;
-            case "थोरै हिउँ":
-            case "मध्यम हिउँ":
-            case "धेरै हिउँ":
-            case "हिउँको दाना":
-                return <CloudSnow className={iconClass} />;
+
             case "कुहिरो":
+                return <CloudFog className={iconClass} />;
+
             case "बरफिलो कुहिरो":
                 return <CloudFog className={iconClass} />;
+
+            case "हल्का पानी":
+                return <CloudDrizzle className={iconClass} />;
+
+            case "मध्यम पानी":
+                return <CloudRain className={iconClass} />;
+
+            case "धेरै पानी":
+                return <CloudRainWind className={iconClass} />;
+
+            case "थोरै पानी":
+                return <CloudRain className={iconClass} />;
+
+            case "हल्का जमेको पानी":
+                return <CloudHail className={iconClass} />;
+
+            case "धेरै जमेको पानी":
+                return <CloudHail className={iconClass} />;
+
+            case "थोरै हिउँ":
+                return <CloudSnow className={iconClass} />;
+
+            case "मध्यम हिउँ":
+                return <CloudSnow className={iconClass} />;
+
+            case "धेरै हिउँ":
+                return <CloudSnow className={iconClass} />;
+
+            case "हिउँको दाना":
+                return <Snowflake className={iconClass} />;
+
+            case "थोरै वर्षा":
+                return <CloudDrizzle className={iconClass} />;
+
+            case "मध्यम वर्षा":
+                return <CloudRain className={iconClass} />;
+
+            case "भारी वर्षा":
+                return <CloudRainWind className={iconClass} />;
+
+            case "थोरै हिउँ वर्षा":
+                return <CloudSnow className={iconClass} />;
+
+            case "धेरै हिउँ वर्षा":
+                return <Snowflake className={iconClass} />;
+
             case "बिजुली चम्किरहेको छ":
+                return <CloudLightning className={iconClass} />;
+
             case "थोरै हिमकणसहित बिजुली चम्किरहेको छ":
+                return <CloudLightning className={iconClass} />;
+
             case "धेरै हिमकणसहित बिजुली चम्किरहेको छ":
-                return <Zap className={iconClass} />;
+                return <CloudLightning className={iconClass} />;
+
             default:
                 return <Sun className={iconClass} />;
         }
@@ -321,7 +373,9 @@ export function WeatherCard({
                         {getWeatherIcon(condition)}
                     </div>
                     <div>
-                        <h2 className="text-gray-800 mb-1 text-lg font-semibold">{condition}</h2>
+                        <h2 className="text-gray-800 mb-1 text-lg font-semibold">
+                            {condition}
+                        </h2>
                         <div className="text-2xl">
                             {getTempEmoji(temperature)}
                         </div>
@@ -331,7 +385,9 @@ export function WeatherCard({
                     <div className="text-blue-600 mb-1 font-semibold">
                         तापमान {temperature}°C
                     </div>
-                    <div className="text-gray-600 font-semibold">महसुस {feelsLike}°C</div>
+                    <div className="text-gray-600 font-semibold">
+                        महसुस {feelsLike}°C
+                    </div>
                 </div>
             </div>
             <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200">
