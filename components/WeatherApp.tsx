@@ -4,26 +4,49 @@ import { WeatherHeader } from "./WeatherHeader";
 import { WeatherCard } from "./WeatherCard";
 import { WeatherStats } from "./WeatherStats";
 import { ClothingSuggestions } from "./ClothingSuggestions";
+import { WeeklyForecast } from "./WeeklyForecast";
 
-interface WeatherStackResponse {
-    location: { name: string; country: string };
-    current: {
-        temperature: number;
-        feelslike?: number;
-        wind_speed: number;
-        humidity?: number;
-        visibility?: number;
-        weather_descriptions: string[];
-        weather_icons: string[];
-        astro: {
-            sunrise: string;
-            sunset: string;
-        };
-        air_quality: {
-            "us-epa-index": string;
-        };
-    };
-}
+type DailyForecastItem = {
+    date: string; // ISO date string
+    minTemp: number;
+    maxTemp: number;
+    weatherCode: number;
+
+};
+
+type WeatherStackResponse = {
+    // location: { name: string; country: string };
+    // current: {
+    //     temperature: number;
+    //     feelslike?: number;
+    //     wind_speed: number;
+    //     humidity?: number;
+    //     visibility?: number;
+    //     weather_descriptions: string[];
+    //     weather_icons: string[];
+    //     astro: {
+    //         sunrise: string;
+    //         sunset: string;
+    //     };
+    //     air_quality: {
+    //         "us-epa-index": string;
+    //     };
+    // };
+
+    countryName: string;
+    cityName: string;
+    temperature: number;
+    feelsLike: number;
+    windSpeed: number;
+    humidity: number;
+    visibility: number;
+    weatherCode: number;
+    sunrise: string;
+    sunset: string;
+    uvIndex: number;
+    aqi: number;
+    dailyForecast: DailyForecastItem[];
+};
 
 export default function WeatherApp() {
     const [weather, setWeather] = useState<WeatherStackResponse | null>(null);
@@ -68,64 +91,67 @@ export default function WeatherApp() {
     if (error)
         return <div className="text-center mt-20 text-white">{error}</div>;
 
-    const city = weather?.location?.name ?? "काठमाडौं";
-    const country = weather?.location?.country ?? "नेपाल";
-    const condition = weather?.current?.weather_descriptions[0];
-    const temp = weather?.current?.temperature ?? 20;
-    const feelsLike = weather?.current?.feelslike ?? temp;
-    const wind = weather?.current?.wind_speed ?? 10;
-    const humidity = weather?.current?.humidity ?? 50;
-    const visibility = weather?.current?.visibility ?? 8;
-    const sunrise = weather?.current?.astro?.sunrise ?? "00:00";
-    const sunset = weather?.current?.astro?.sunset ?? "00.00";
-    const weather_icons = weather?.current?.weather_icons ?? [];
-    const airQuality = weather?.current?.air_quality?.["us-epa-index"] ?? "0";
+    // const city = weather?.country ?? "काठमाडौं";
+    // const country = weather?.location?.country ?? "नेपाल";
+    // const condition = weather?.current?.weather_descriptions[0];
+    // const temp = weather?.current?.temperature ?? 20;
+    // const feelsLike = weather?.current?.feelslike ?? temp;
+    // const wind = weather?.current?.wind_speed ?? 10;
+    // const humidity = weather?.current?.humidity ?? 50;
+    // const visibility = weather?.current?.visibility ?? 8;
+    // const sunrise = weather?.current?.astro.sunrise ?? "00:00";
+    // const sunset = weather?.current?.astro.sunset ?? "00.00";
+    // const weather_icons = weather?.current?.weather_icons ?? [];
+    // const airQuality = weather?.current?.air_quality?.["us-epa-index"] ?? "0";
 
-    const tempRange:
-        | "extremely_cold"
-        | "very_cold"
-        | "cold"
-        | "mild"
-        | "hot"
-        | "very_hot"
-        | "extremely_hot" =
-        feelsLike <= -20
-            ? "extremely_cold"
-            : feelsLike <= -10
-            ? "very_cold"
-            : feelsLike <= -5
-            ? "cold"
-            : feelsLike <= 25
-            ? "mild"
-            : feelsLike <= 30
-            ? "hot"
-            : feelsLike <= 40
-            ? "very_hot"
-            : "extremely_hot";
+    // const tempRange:
+    //     | "extremely_cold"
+    //     | "very_cold"
+    //     | "cold"
+    //     | "mild"
+    //     | "hot"
+    //     | "very_hot"
+    //     | "extremely_hot" =
+    //     feelsLike <= -20
+    //         ? "extremely_cold"
+    //         : feelsLike <= -10
+    //         ? "very_cold"
+    //         : feelsLike <= -5
+    //         ? "cold"
+    //         : feelsLike <= 25
+    //         ? "mild"
+    //         : feelsLike <= 30
+    //         ? "hot"
+    //         : feelsLike <= 40
+    //         ? "very_hot"
+    //         : "extremely_hot";
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-600 pb-6 px-4">
-            <WeatherHeader city={city} country={country} temperature={temp} />
+            <WeatherHeader
+                city={weather?.cityName ?? ""}
+                country={weather?.countryName ?? ""}
+                temperature={weather?.temperature ?? 0}
+            />
             <div className="mt-6 max-w-md mx-auto space-y-4">
                 <WeatherCard
-                    apiCondition={condition}
-                    temperature={temp}
-                    feelsLike={feelsLike}
-                    windSpeed={wind}
-                    humidity={humidity}
-                    visibility={visibility}
-                    tempRange={tempRange}
-                    weather_icons={weather_icons}
+                    weatherCode={weather?.weatherCode ?? 0}
+                    temperature={weather?.temperature ?? 0}
+                    feelsLike={weather?.feelsLike ?? 0}
+                    windSpeed={weather?.windSpeed ?? 0}
+                    humidity={weather?.humidity ?? 0}
+                    visibility={weather?.visibility ?? 0}
                 />
+                <WeeklyForecast dailyForecast={weather?.dailyForecast ?? []}/>
                 <WeatherStats
-                    uvIndex={3}
-                    sunrise={sunrise}
-                    sunset={sunset}
-                    airQuality={airQuality}
+                    uvIndex={weather?.uvIndex ?? 0}
+                    sunrise={weather?.sunrise ?? "00:00"}
+                    sunset={weather?.sunset ?? "00:00"}
+                    aqi={weather?.aqi ?? 0}
                 />
                 <ClothingSuggestions
-                    condition={condition ?? "घाम"}
-                    tempRange={tempRange}
+                    weatherCode={weather?.weatherCode ?? 0}
+                    feelsLike={weather?.feelsLike ?? 0}
                 />
             </div>
         </div>

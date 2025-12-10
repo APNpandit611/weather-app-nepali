@@ -4,14 +4,14 @@ interface WeatherStatsProps {
     uvIndex: number;
     sunrise: string;
     sunset: string;
-    airQuality: string;
+    aqi: number;
 }
 
 export function WeatherStats({
     uvIndex,
     sunrise,
     sunset,
-    airQuality,
+    aqi,
 }: WeatherStatsProps) {
     const getUVColor = () => {
         if (uvIndex <= 2) return "text-green-600";
@@ -27,42 +27,61 @@ export function WeatherStats({
         return "धेरै उच्च";
     };
 
-    const airQualityIndex = Number(airQuality);
+    const airQualityIndex = Number(aqi);
+
+    // ⭐ AQI जाँच र कन्डिसनिङको परिमार्जित भाग ⭐
     const getAirQuality = (index: number) => {
-        switch (index) {
-            case 1:
-                return {
-                    label: "राम्रो",
-                    color: "bg-green-200 text-green-800",
-                };
-            case 2:
-                return {
-                    label: "मध्यम",
-                    color: "bg-yellow-200 text-yellow-800",
-                };
-            case 3:
-                return {
-                    label: "संवेदनशील समूहको लागि अस्वस्थ",
-                    color: "bg-orange-200 text-orange-800",
-                };
-            case 4:
-                return { label: "अस्वस्थ", color: "bg-red-200 text-red-800" };
-            case 5:
-                return {
-                    label: "धेरै अस्वस्थ",
-                    color: "bg-purple-200 text-purple-800",
-                };
-            case 6:
-                return { label: "खतरनाक", color: "bg-pink-200 text-pink-800" };
-            default:
-                return {
-                    label: "छैन",
-                    color: "bg-gray-200 text-gray-800",
-                };
+        // अमेरिकी EPA AQI मापदण्ड अनुसार संख्यात्मक दायरा जाँच
+        if (index <= 50) {
+            return {
+                label: "राम्रो", // Good
+                color: "text-green-600",
+                bgColor: "bg-green-100",
+            };
+        } else if (index <= 100) {
+            return {
+                label: "मध्यम", // Moderate
+                color: "text-yellow-600",
+                bgColor: "bg-yellow-100 ",
+            };
+        } else if (index <= 150) {
+            return {
+                label: "संवेदनशील समूहको लागि अस्वस्थ", // Unhealthy for Sensitive Groups
+                color: "text-orange-600",
+                bgColor: "bg-orange-100 ",
+            };
+        } else if (index <= 200) {
+            return {
+                label: "अस्वस्थ", // Unhealthy
+                color: "text-red-600",
+                bgColor: "bg-red-100 ",
+            };
+        } else if (index <= 300) {
+            return {
+                label: "धेरै अस्वस्थ", // Very Unhealthy
+                color: "text-purple-600",
+                bgColor: "bg-purple-100 ",
+            };
+        } else if (index > 300) {
+            return {
+                label: "खतरनाक", // Hazardous
+                color: "text-maroon-600", // Tailwind मा maroon नभएकाले bg-pink-900 जस्तै प्रयोग गर्न सकिन्छ
+                bgColor: "bg-maroon-100 ",
+            };
+        } else {
+            return {
+                label: "छैन", // Not Available
+                color: "text-gray-600",
+                bgColor: "bg-gray-200 ",
+            };
         }
     };
-    const { label: airQualityNepali, color: airQualityColor } =
+
+    // (नोट: मैले Tailwind मा 'bg-maroon-100' नभएकाले यसलाई काल्पनिक मानेको छु। तपाईंले आफ्नै कस्टम वर्ग वा उच्च pink/purple रंग प्रयोग गर्न सक्नुहुन्छ।)
+
+    const { label: airQualityNepali, color: airQualityTextColor , bgColor: airQualityBgColor} =
         getAirQuality(airQualityIndex);
+    // ⭐ परिमार्जित भागको अन्त्य ⭐
 
     return (
         <div className="grid grid-cols-2 gap-4">
@@ -80,7 +99,7 @@ export function WeatherStats({
                 <div
                     className={`text-center ${getUVColor()} py-2 bg-white/60 rounded-xl`}
                 >
-                    {uvIndex}/10
+                    {uvIndex}
                 </div>
             </div>
 
@@ -92,10 +111,16 @@ export function WeatherStats({
                     </div>
                     <div>
                         <div className="text-gray-700">हावाको गुणस्तर</div>
+                        {/* नयाँ AQI मान पनि यहाँ प्रदर्शन गर्नुहोस् */}
+                        <div
+                            className={`${airQualityTextColor} text-lg text-gray-900`}
+                        >
+                            {airQualityIndex}
+                        </div>
                     </div>
                 </div>
                 <div
-                    className={`text-center py-2 rounded-xl ${airQualityColor}`}
+                    className={`${airQualityTextColor} ${airQualityBgColor} text-center py-2 rounded-xl`}
                 >
                     {airQualityNepali}
                 </div>
@@ -109,7 +134,9 @@ export function WeatherStats({
                     </div>
                     <div>
                         <div className="text-gray-700">सूर्योदय</div>
-                        <div className="text-orange-600">{sunrise}</div>
+                        <div className="text-orange-600">
+                            {sunrise.split("T")[1]}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,7 +149,9 @@ export function WeatherStats({
                     </div>
                     <div>
                         <div className="text-gray-700">सूर्यास्त</div>
-                        <div className="text-purple-600">{sunset}</div>
+                        <div className="text-purple-600">
+                            {sunset.split("T")[1]}
+                        </div>
                     </div>
                 </div>
             </div>

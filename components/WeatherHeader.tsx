@@ -3,8 +3,8 @@ import { RefreshCcw } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface WeatherHeaderProps {
-    city: string;
-    country: string;
+    city: string | undefined;
+    country: string | undefined;
     temperature: number;
 }
 
@@ -24,7 +24,7 @@ export function WeatherHeader({
                     <RefreshCcw className="text-white cursor-pointer" onClick={() => router.refresh()}/>
                 </div>
                 <div className="text-center text-white/90 flex items-center justify-center gap-2">
-                    <p>{country}</p>•<p>{temperature} °C</p>
+                    <p>{country}</p>•<p className="font-semibold">{temperature} °C</p>
                 </div>
             </div>
         </div>
