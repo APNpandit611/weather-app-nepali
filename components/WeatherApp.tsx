@@ -52,13 +52,13 @@ type WeatherStackResponse = {
 
 export default function WeatherApp() {
     const [weather, setWeather] = useState<WeatherStackResponse | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (!navigator.geolocation) {
             setError("तपाईंको ब्राउजरले स्थान सेवा समर्थन गर्दैन");
-            setLoading(true);
+            setLoading(false);
             return;
         }
 
@@ -66,7 +66,6 @@ export default function WeatherApp() {
             async (pos) => {
                 const { latitude, longitude } = pos.coords;
                 try {
-                    setLoading(true)
                     const res = await fetch(
                         `/api/weather?lat=${latitude}&lon=${longitude}`
                     );
@@ -85,7 +84,7 @@ export default function WeatherApp() {
         );
     }, []);
 
-    if (loading && !weather)
+    if (loading)
         return (
             <div className="flex items-center justify-center h-screen">
                 <Loader
