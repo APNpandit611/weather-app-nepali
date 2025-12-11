@@ -23,13 +23,14 @@ Experience the application live here:
 * **Framework:** [Next.js](https://nextjs.org/) (React Framework)
 * **Language:** [TypeScript](https://www.typescriptlang.org/)
 * **Styling:** *(Insert your styling library here, e.g., Tailwind CSS, CSS Modules, or SCSS)*
-* **Data Source:** *(Insert the API you used, e.g., OpenWeatherMap API, WeatherAPI, etc.)*
+* **Data Source:*
+* *(Insert the API you used, e.g., OpenWeatherMap API, WeatherAPI, etc.)*
 
 ## 🖼 Screenshots
-
 | Desktop View | Mobile View |
+
 | :---: | :---: |
-| ![Desktop Screenshot Placeholder](https://via.placeholder.com/600x400?text=Insert+Desktop+Screenshot+Here) | ![Mobile Screenshot Placeholder](https://via.placeholder.com/300x600?text=Insert+Mobile+Screenshot+Here) |
+| ![Desktop Screenshot Placeholder](<img width="1130" height="912" alt="meromausam1" src="https://github.com/user-attachments/assets/307810de-bf52-428b-8139-fb00323658c7" />) | ![Mobile Screenshot Placeholder](https://via.placeholder.com/300x600?text=Insert+Mobile+Screenshot+Here) |
 
 ***(To add the screenshots: Replace the placeholder links above with direct links to your images. You can easily upload images to GitHub and use those links, or host them elsewhere.)***
 
