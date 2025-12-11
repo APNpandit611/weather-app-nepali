@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ☀️ Mero Mausam (Weather App Nepali)
 
-## Getting Started
+## 🌟 Overview
 
-First, run the development server:
+Mero Mausam is a fast, responsive, and modern weather application built with Next.js and TypeScript. It provides accurate, up-to-date weather forecasts, allowing users to quickly check conditions for various locations.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project is a clean, feature-rich implementation of a modern front-end application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔗 Live Demo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Experience the application live here:
+**[meromausam.netlify.app](https://meromausam.netlify.app)**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Features
 
-## Learn More
+* **Real-time Weather Data:** Displays current temperature, weather conditions, and icons.
+* **Location Search:** Easily search for weather in any city or region.
+* **Detailed Forecasts:** Showcases key weather metrics like humidity, wind speed, and pressure. *(Customize this list if your app has more features like a 5-day forecast, hourly data, etc.)*
+* **Responsive Design:** Works beautifully on desktop, tablet, and mobile devices.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Technology Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Framework:** [Next.js](https://nextjs.org/) (React Framework)
+* **Language:** [TypeScript](https://www.typescriptlang.org/)
+* **Styling:** *(Insert your styling library here, e.g., Tailwind CSS, CSS Modules, or SCSS)*
+* **Data Source:** *(Insert the API you used, e.g., OpenWeatherMap API, WeatherAPI, etc.)*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🖼 Screenshots
 
-## Deploy on Vercel
+| Desktop View | Mobile View |
+| :---: | :---: |
+| ![Desktop Screenshot Placeholder](https://via.placeholder.com/600x400?text=Insert+Desktop+Screenshot+Here) | ![Mobile Screenshot Placeholder](https://via.placeholder.com/300x600?text=Insert+Mobile+Screenshot+Here) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+***(To add the screenshots: Replace the placeholder links above with direct links to your images. You can easily upload images to GitHub and use those links, or host them elsewhere.)***
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙ Getting Started
+
+To run this project locally, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/APNpandit611/weather-app-nepali.git](https://github.com/APNpandit611/weather-app-nepali.git)
+    cd weather-app-nepali
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
