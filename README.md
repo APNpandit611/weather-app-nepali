@@ -29,8 +29,12 @@ Experience the application live here:
 ## 🖼 Screenshots
 | Desktop View | Mobile View |
 
-
-![App Screenshot Desktop](public/meromausam1.png) | ![App Screenshot Mobile](public/meromausam3.png)  |
+<table>
+  <tr>
+    <td><img src="public/meromausam1.png" alt="App Screenshot Desktop" width="300"/></td>
+    <td><img src="public/meromausam3.png" alt="App Screenshot Mobile" width="200"/></td>
+  </tr>
+</table>
 
 ***(To add the screenshots: Replace the placeholder links above with direct links to your images. You can easily upload images to GitHub and use those links, or host them elsewhere.)***
 
