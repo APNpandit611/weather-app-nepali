@@ -8,6 +8,7 @@ import { WeeklyForecast } from "./WeeklyForecast";
 import Spinner from "./Loader";
 import { Loader2 } from "lucide-react";
 import Loader from "./Loader";
+import { getWeather } from "@/utils/getWeather";
 
 type DailyForecastItem = {
     date: string; // ISO date string
@@ -66,10 +67,12 @@ export default function WeatherApp() {
             async (pos) => {
                 const { latitude, longitude } = pos.coords;
                 try {
-                    const res = await fetch(
-                        `/api/weather?lat=${latitude}&lon=${longitude}`
-                    );
-                    const data: WeatherStackResponse = await res.json();
+                    // const res = await fetch(
+                    //     `/api/weather?lat=${latitude}&lon=${longitude}`
+                    // );
+
+                    const data: WeatherStackResponse = await getWeather(latitude, longitude)
+                    // const data: WeatherStackResponse = await res.json();
                     setWeather(data);
                 } catch {
                     setError("मौसम डेटा प्राप्त गर्न असफल");
@@ -80,6 +83,11 @@ export default function WeatherApp() {
             () => {
                 setError("स्थान सेवा अनुमति अस्वीकृत");
                 setLoading(false);
+            },
+            {
+                enableHighAccuracy: true, // <-- IMPORTANT
+                timeout: 10000,
+                maximumAge: 0,
             }
         );
     }, []);
