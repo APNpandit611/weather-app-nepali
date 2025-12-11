@@ -55,3 +55,4 @@ export const weatherCodeMap: Record<number, WeatherCondition> = {
     96: "थोरै हिमकणसहित बिजुली चम्किरहेको छ",
     99: "धेरै हिमकणसहित बिजुली चम्किरहेको छ",
 };
+

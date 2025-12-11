@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import { WeatherCondition, weatherCodeMap } from "@/utils/weatherConditions";
 
 interface DailyForecastItem {
@@ -14,12 +12,6 @@ interface WeeklyForecastProps {
 }
 
 export function WeeklyForecast({ dailyForecast }: WeeklyForecastProps) {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-    const toggle = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
-
     return (
         // <div className="bg-white/70 backdrop-blur-md rounded-3xl p-4 shadow-xl border border-white/50">
         //     {dailyForecast.map((day, i) => {
@@ -53,7 +45,6 @@ export function WeeklyForecast({ dailyForecast }: WeeklyForecastProps) {
                 return (
                     <button
                         key={i}
-                        onClick={() => toggle(i)}
                         className="w-full flex justify-between items-center px-4 py-2 mb-2 bg-gradient-to-r from-blue-300 to-indigo-400 rounded-xl text-white font-semibold shadow-md"
                     >
                         <span>
@@ -66,12 +57,48 @@ export function WeeklyForecast({ dailyForecast }: WeeklyForecastProps) {
                         <span>
                             {day.minTemp}°C - {day.maxTemp}°C
                         </span>
-                        <span>
-                            {condition}
-                        </span>
+                        <span>{condition}</span>
                     </button>
                 );
             })}
         </div>
+
+        // <div className="bg-white/30 backdrop-blur-lg rounded-3xl p-6 shadow-2xl border border-white/40 max-w-md mx-auto">
+        //     {dailyForecast.map((day, i) => {
+        //         const condition: WeatherCondition = weatherCodeMap[
+        //             day.weatherCode
+        //         ] as WeatherCondition;
+        //         return (
+        //             <button
+        //                 key={i}
+        //                 onClick={() => toggle(i)}
+        //                 className="w-full flex justify-between items-center gap-3 px-5 py-3 mb-3 rounded-2xl text-white font-medium bg-gradient-to-r from-indigo-400 via-blue-400 to-cyan-400 shadow-lg
+        //            hover:from-indigo-500 hover:to-cyan-500 active:scale-[0.98] transition-all duration-300 ease-in-out transform"
+        //             >
+        //                 <div className="flex flex-col text-left">
+        //                     <span className="text-sm opacity-90">
+        //                         {new Date(day.date).toLocaleDateString(
+        //                             "ne-NP",
+        //                             {
+        //                                 weekday: "short",
+        //                                 day: "numeric",
+        //                                 month: "short",
+        //                             }
+        //                         )}
+        //                     </span>
+        //                 </div>
+
+        //                 <div className="flex flex-col items-end">
+        //                     <span className="text-lg font-semibold">
+        //                         {day.minTemp}°C – {day.maxTemp}°C
+        //                     </span>
+        //                     <span className="text-sm opacity-80">
+        //                         {condition}
+        //                     </span>
+        //                 </div>
+        //             </button>
+        //         );
+        //     })}
+        // </div>
     );
 }
