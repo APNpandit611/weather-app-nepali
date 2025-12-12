@@ -84,11 +84,11 @@ export default function WeatherApp() {
                 setError("स्थान सेवा अनुमति अस्वीकृत");
                 setLoading(false);
             },
-            // {
-            //     enableHighAccuracy: true, // <-- IMPORTANT
-            //     timeout: 1000,
-            //     maximumAge: 0,
-            // }
+            {
+                enableHighAccuracy: true, // <-- IMPORTANT
+                timeout: 10000,
+                maximumAge: 0,
+            }
         );
     }, []);
  
