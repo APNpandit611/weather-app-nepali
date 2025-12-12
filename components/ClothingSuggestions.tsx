@@ -28,6 +28,7 @@ export function ClothingSuggestions({ weatherCode, feelsLike }: ClothingSuggesti
       ? "very_hot"
       : "extremely_hot";
 
+      console.log("tempRange", tempRange)
   // Map weatherCode to Nepali condition
   const condition: WeatherCondition = weatherCodeMap[weatherCode] ?? "स्पष्ट आकाश";
 
@@ -49,11 +50,12 @@ export function ClothingSuggestions({ weatherCode, feelsLike }: ClothingSuggesti
         break;
       case "very_cold":
         suggestions.push(
-          { icon: "🧥", label: "तातो ज्याकेट", color: "bg-orange-150" },
+          { icon: "🧥", label: "बाक्लो ज्याकेट", color: "bg-orange-150" },
           { icon: "🧣", label: "स्कार्फ", color: "bg-red-150" },
           { icon: "🧤", label: "पन्जा", color: "bg-purple-150" },
-          { icon: "🧦", label: "मोजा", color: "bg-pink-150" },
-          { icon: "👢", label: "तातो बुट", color: "bg-amber-150" }
+          { icon: "🧦", label: "तातो मोजा", color: "bg-pink-150" },
+          { icon: "👢", label: "तातो बुट", color: "bg-amber-150" },
+          { icon: "🧵", label: "तातो स्वेटर", color: "bg-yellow-200" }
         );
         break;
       case "cold":
@@ -114,7 +116,7 @@ export function ClothingSuggestions({ weatherCode, feelsLike }: ClothingSuggesti
     }
     if (condition.includes("हिउँ")) {
       suggestions.push(
-        { icon: "🧥", label: "तातो ज्याकेट", color: "bg-cyan-100" },
+        { icon: "🧥", label: "तातो स्वेटर", color: "bg-cyan-100" },
         { icon: "🧣", label: "मफलर", color: "bg-rose-100" },
         { icon: "🧤", label: "पन्जा", color: "bg-purple-100" },
         { icon: "🥾", label: "तातो बुट", color: "bg-orange-100" },
@@ -123,7 +125,7 @@ export function ClothingSuggestions({ weatherCode, feelsLike }: ClothingSuggesti
     }
     if (condition.includes("धुंध")) {
       suggestions.push(
-        { icon: "🧥", label: "हल्का ज्याकेट", color: "bg-gray-100" },
+        { icon: "🥼", label: "हल्का ज्याकेट", color: "bg-gray-100" },
         { icon: "🧣", label: "स्कार्फ", color: "bg-gray-200" }
       );
     }
@@ -135,7 +137,7 @@ export function ClothingSuggestions({ weatherCode, feelsLike }: ClothingSuggesti
         { icon: "🧤", label: "सुरक्षात्मक पन्जा", color: "bg-purple-200" }
       );
     }
-    if (condition.includes("स्पष्ट") || condition.includes("घाम")) {
+    if (condition.includes("स्पष्ट") && condition.includes("घाम")) {
       suggestions.push(
         { icon: "🕶️", label: "सुर्य चश्मा", color: "bg-yellow-100" },
         { icon: "🧢", label: "टोपी", color: "bg-orange-100" },
