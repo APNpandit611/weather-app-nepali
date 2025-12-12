@@ -86,7 +86,7 @@ export default function WeatherApp() {
             },
             {
                 enableHighAccuracy: true, // <-- IMPORTANT
-                timeout: 10000,
+                timeout: 1000,
                 maximumAge: 0,
             }
         );
