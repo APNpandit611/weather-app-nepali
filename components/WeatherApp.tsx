@@ -9,6 +9,7 @@ import Spinner from "./Loader";
 import { Loader2 } from "lucide-react";
 import Loader from "./Loader";
 import { getWeather } from "@/utils/getWeather";
+import Snowfall from "react-snowfall";
 
 type DailyForecastItem = {
     date: string; // ISO date string
@@ -170,6 +171,7 @@ export default function WeatherApp() {
                     feelsLike={weather?.feelsLike ?? 0}
                 />
             </div>
+            <Snowfall/>
         </div>
     );
 }
