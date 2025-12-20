@@ -21,17 +21,16 @@ export function WeatherHeader({
                     <div className="text-white/80">📍</div>
                     <div className="flex-1 text-center">
                         <h1 className="text-white inline-block relative">
-                            {city}
-
-                            {/* Hat */}
+                            {city}    
                             <Image
                                 src="/hat.png"
                                 alt="Hat"
-                                width={40}
-                                height={40}
-                                className="absolute -top-4 -right-6 animate-wiggle"
-                            />
+                                width={30}
+                                height={30}
+                                className="absolute -top-3.5 -right-4"
+                            />                       
                         </h1>
+                         
                     </div>
 
                     <RefreshCcw
