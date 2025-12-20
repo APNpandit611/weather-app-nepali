@@ -24,7 +24,7 @@ Experience the application live here:
 * **Language:** [TypeScript](https://www.typescriptlang.org/)
 * **Styling:** *(Insert your styling library here, e.g., Tailwind CSS, CSS Modules, or SCSS)*
 * **Data Source:*
-* *(Insert the API you used, e.g., OpenWeatherMap API, WeatherAPI, etc.)*
+* Open-mateo
 
 ## 🖼 Screenshots
 | Desktop View | Mobile View |
@@ -36,7 +36,6 @@ Experience the application live here:
   </tr>
 </table>
 
-***(To add the screenshots: Replace the placeholder links above with direct links to your images. You can easily upload images to GitHub and use those links, or host them elsewhere.)***
 
 ## ⚙ Getting Started
 
