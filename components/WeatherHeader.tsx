@@ -21,9 +21,16 @@ export function WeatherHeader({
                     <div className="text-white/80">📍</div>
                     <div className="flex-1 text-center">
                         <h1 className="text-white inline-block relative">
-                            {city}    
+                            {city} 
+                               <Image
+                                src="/next.svg"
+                                alt="Hat"
+                                width={30}
+                                height={30}
+                                className="absolute -top-3.5 -right-4"
+                            />
                             <Image
-                                src="/hat.png"
+                                src="/myHat.png"
                                 alt="Hat"
                                 width={30}
                                 height={30}
