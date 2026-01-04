@@ -28,7 +28,6 @@ export function ClothingSuggestions({ weatherCode, feelsLike }: ClothingSuggesti
       ? "very_hot"
       : "extremely_hot";
 
-      console.log("tempRange", tempRange)
   // Map weatherCode to Nepali condition
   const condition: WeatherCondition = weatherCodeMap[weatherCode] ?? "स्पष्ट आकाश";
 
